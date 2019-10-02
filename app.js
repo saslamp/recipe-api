@@ -30,7 +30,7 @@ app.post('/api/recipes', (req, res, next) => {
 		recipe.save().then(
 			() => res.status(201).json({ message: 'Recipe added'})
 		).catch((err) => {
-			res.status(400).json({error: error})
+			res.status(400).json({error: err})
 		})
 });
 
