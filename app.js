@@ -30,7 +30,7 @@ app.post('/api/recipes', (req, res, next) => {
 		recipe.save().then(
 			() => res.status(201).json({ message: 'Recipe added'})
 		).catch((err) => {
-			res.status(400).json(error)
+			res.status(400).json({error: error})
 		})
 });
 
@@ -40,7 +40,7 @@ app.get('/api/recipes', (req, res, next) => {
 			res.status(200).json(recipes)
 		}).catch(
 		(err) => {
-			res.status(404).json(err)
+			res.status(404).json({error: err})
 		})
 });
 
@@ -61,13 +61,13 @@ app.put('/api/recipes/:id', (req, res, next) => {
 		})
 	Recipe.updateOne({_id: req.params.id}, recipe).then(
 		() => res.status(201).json({message: 'recipe updated'})).catch(
-		(err) => res.status(400).json(err))
+		(err) => res.status(400).json({error: err}))
 });
 
 app.delete('/api/recipes/:id', (req, res, next) => {
 	Recipe.deleteOne({ _id: req.params.id }).then(
 		() => res.status(200).json({ message: 'Deleted'})).catch(
-		(err) => res.status(404).json(err))
+		(err) => res.status(404).json({error: err}))
 });
 
 module.exports = app;
